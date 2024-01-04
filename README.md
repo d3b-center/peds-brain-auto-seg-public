@@ -22,7 +22,7 @@ Input files must be pre-processed, we recommend using the [BraTS pipeline](https
 
 ### Organization
 
-Pre-processed input files must be located in an `input/` directory folder and named with the following format: `[subID]_[imageID].nii.gz` where the imageID for each image type is:
+Pre-processed input files must be located in an `input/` directory folder (called "input") and named with the following format: `[subID]_[imageID].nii.gz` where the imageID for each image type is:
 
 | Image type      | imageID |
 | ----------- | ----------- |
@@ -48,10 +48,17 @@ input/
 ## STEP 2: Usage
 
 1. [Install Docker](https://docs.docker.com/engine/install/)
-2. copy the `docker-compose.yml` file from this repository into the directory that contains your `input/` folder
+2. copy the `docker-compose.yml` file from this repository into the directory that contains your `input/` folder:
+    ```
+    docker-compose.yml
+    input/
+        sub001_000.nii.gz
+        sub001_001.nii.gz
+        ...
+    ```
 3. from within that folder, run the command:
-```
-docker compose up
-```
+    ```
+    docker compose up
+    ```
 
-It takes about an hour to fully process a single subject's data (depending on your machine specs). Model predictions will be stored in an `output/` folder labeled `[subID]_000.nii.gz` .
+It takes about an hour to fully process a single subject's data (depending on your machine specs). Model predictions will be stored in an `output/` folder with files named `[subID]_000.nii.gz` .
