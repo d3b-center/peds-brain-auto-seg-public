@@ -1,6 +1,6 @@
 # PedsBrainAutoSeg tool
 
-The following tool can be used to generate AI-predicted brain tumor segmentations for pediatric patients. It was trained using the nnU-Net framework on a multi-institutional, heterogeneous dataset (see reference).
+This tool can be used to generate AI-predicted brain tumor segmentations for pediatric patients with multi-parametric MRIs. It was trained using the nnU-Net framework on a multi-institutional, heterogeneous dataset (see reference).
 
 Based on 4 input image sequences per patient, the model will output a single prediction file with up to 4 tumor subregions:
 1. Enhancing tumor
@@ -8,7 +8,7 @@ Based on 4 input image sequences per patient, the model will output a single pre
 3. Cyst
 4. Edema
 
-If you use this tool, please cite the following reference:
+If you use this tool in your work, please cite the following reference accordingly:
 
 [...]
 
