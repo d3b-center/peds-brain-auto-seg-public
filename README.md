@@ -10,7 +10,7 @@ Based on 4 input image sequences per patient, the model will output a single pre
 
 If you use this tool in your work, please cite the following reference accordingly:
 
-[...]
+1. Arastoo Vossough, Nastaran Khalili, Ariana M. Familiar, Deep Gandhi, Karthik Viswanathan, Wenxin Tu, Debanjan Haldar, Sina Bagheri, Hannah Anderson, Shuvanjan Haldar, Phillip B. Storm, Adam Resnick, Jeffrey B. Ware, Ali Nabavizadeh, Anahita Fathi Kazerooni, "Training and Comparison of nnU-Net and DeepMedic Methods for Autosegmentation of Pediatric Brain Tumors", https://arxiv.org/abs/2401.08404
 
 ## STEP 1: Prepare the input files
 
