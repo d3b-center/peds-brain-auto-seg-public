@@ -61,7 +61,7 @@ input/
     docker compose up
     ```
 
-It takes about an hour to fully process a single subject's data (depending on your machine specs). Model predictions will be stored in an `output/` folder with files named `[subID]_000.nii.gz` .
+It takes about an hour to fully process a single subject's data (depending on your machine specs). Model predictions will be stored in an `output/` folder with files named `[subID]_pred_brainTumorSeg.nii.gz` .
 
 
 ## Usage & Citations
