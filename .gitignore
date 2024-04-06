@@ -1,0 +1,34 @@
+# Python stuff
+*.egg-info
+.coverage
+__pycache__
+coverage.xml
+cov.xml
+dist
+junit.xml
+.python-version
+
+# Mac stuff
+.DS_Store
+
+# Editor specific stuff
+.vscode
+.idea/
+
+# Gear stuff
+config.json
+config.json.back
+.input_map.json
+
+# Misc
+*.svs
+*.nii.gz
+nnUNet_*
+Task070*
+input/
+output/
+docker_go.sh
+output/plans.pkl
+output/prediction_time.txt
+output/plans.pkl
+CaPTk_*
