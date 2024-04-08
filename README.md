@@ -22,25 +22,25 @@ Input files must be pre-processed, we recommend using the [BraTS pipeline](https
 
 ### Organization
 
-Pre-processed input files must be located in an `input/` directory folder (called "input") and named with the following format: `[subID]_[imageID].nii.gz` where the imageID for each image type is:
+Pre-processed input files must be located in an `input/` directory folder (called "input") and named with the following format: `[subID]_[imageID]...[.nii/.nii.gz]` where the imageID for each image type is:
 
 | Image type      | imageID |
 | ----------- | ----------- |
-| T2w-FLAIR      | 000       |
-| T1w   | 001        |
-| T1w post-contrast   | 002        |
-| T2w   | 003        |
+| T2w-FLAIR      | FL       |
+| T1w   | T1        |
+| T1w post-contrast   | T1CE        |
+| T2w   | T2        |
 
-
+NOTE: the exact file format is required with an underscore: [subID]_[imageID]
 
 For example:
 ```
 input/
-    sub001_000.nii.gz
-    sub001_001.nii.gz
-    sub001_002.nii.gz
-    sub001_003.nii.gz
-    sub002_000.nii.gz
+    sub001_FL.nii.gz
+    sub001_T1.nii.gz
+    sub001_T1CE.nii.gz
+    sub001_T2.nii.gz
+    sub002_FL.nii.gz
     ...
 ```
 
@@ -52,8 +52,8 @@ input/
     ```
     docker-compose.yml
     input/
-        sub001_000.nii.gz
-        sub001_001.nii.gz
+        sub001_FL.nii.gz
+        sub001_T1.nii.gz
         ...
     ```
 3. from within that folder, run the command:
