@@ -62,12 +62,12 @@ input/
     docker compose up
     ```
 
-or if the yaml is not named `docker-compose.yml` then specify the file with -f:
+    or if the yaml is not named `docker-compose.yml` then specify the file with -f:
     ```
     docker compose -f docker-compose_t1ceandt2orflair.yml up
     ```
 
-It takes about an hour to fully process a single subject's data (depending on your machine specs). Model predictions will be stored in an `output/` folder with files named `[subID]_pred_brainTumorSeg.nii.gz` .
+It takes about an hour to fully process a single subject's data (depending on your machine specs). Model predictions will be stored in an `output/` folder with files named `[subID]_pred_brainTumorSeg[/WholeTumorSeg].nii.gz`, OR for T1CE and T2/FLAIR model `[subID]_pred_enhancingTumorSeg.nii.gz` (enhancing region only).
 
 
 ## Usage & Citations
