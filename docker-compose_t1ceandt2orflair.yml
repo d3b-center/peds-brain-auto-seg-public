@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+    peds-brain-auto-seg-t1ceandt2orflair:
+        image: gandhideep22/peds-brain-auto-seg-t1ceandt2orflair:0.0.0
+        hostname: 'peds-brain-auto-seg-t1ceandt2orflair'
+        volumes:
+            - ./input:/input
+            - ./output:/output
