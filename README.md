@@ -1,12 +1,11 @@
 # PedsBrainAutoSeg tool
 
-This tool can be used to generate AI-predicted brain tumor segmentations for pediatric patients with multi-parametric MRIs. It was trained using the nnU-Net framework on a multi-institutional, heterogeneous dataset (see reference).
+This tool can be used to generate AI-predicted brain tumor segmentations for pediatric patients with any available combination of brain MRIs - including 1) multiparametric MRI i.e., T2w-FLAIR, T1w, T1w post-contrast, T2w; 2) either T2w-FLAIR or T2w; and 3) T1w post-contrast and either  T2w-FLAIR or T2w. It was trained using the nnU-Net framework on a multi-institutional, heterogeneous dataset (see reference).
 
-Based on 4 input image sequences per patient, the model will output a single prediction file with up to 4 tumor subregions:
-1. Enhancing tumor
-2. Non-enhancing tumor
-3. Cyst
-4. Edema
+Based on the provided input image sequences per patient, 
+1) Multiparametric inputs will output a single prediction file with up to 4 tumor subregions: Enhancing tumor, Non-enhancing tumor, Cyst and Edema.
+2) T2w-FLAIR or T2w inputs will output a single prediction file with whole brain tumor segmentation.
+3) T1w post-contrast and either T2w-FLAIR or T2w inputs will output a single prediction file with enhancing brain tumor segmentation.
 
 If you use this tool in your work, please cite the following reference accordingly:
 
@@ -15,7 +14,8 @@ If you use this tool in your work, please cite the following reference according
 
 ## STEP 1: Prepare the input files
 
-The model requires 4 images per subject (T2w-FLAIR, T1w, T1w post-contrast, T2w).
+The multi-parametric model requires 4 images per subject (T2w-FLAIR, T1w, T1w post-contrast, T2w).
+However, if all 4 images are not available you can provide either T2w-FLAIR or T2w inputs for just the whole tumor segmentation or T1w post-contrast and either T2w-FLAIR or T2w inputs for enhancing tumor segmentation. 
 
 ### Preprocessing
 
@@ -49,25 +49,29 @@ input/
 ## STEP 2: Usage
 
 1. [Install Docker](https://docs.docker.com/engine/install/)
-2. copy the `docker-compose.yml` file from this repository into the directory that contains your `input/` folder:
+2. copy the appropriate `.yml` file from this repository into the directory that contains your `input/` folder:
+   
+   `docker-compose_multiparametric.yml` for Multi-parametric inputs
+   `docker-compose_t2orflair.yml` for T2w-FLAIR or T2w inputs
+   `docker-compose_t1ceandt2orflair.yml` for T1w post-contrast and either T2w-FLAIR or T2w inputs
+
+   example:
     ```
-    docker-compose.yml
+    docker-compose_multiparametric.yml
     input/
         sub001_FL.nii.gz
         sub001_T1.nii.gz
+        sub001_T1CE.nii.gz
+        sub001_T2.nii.gz
         ...
     ```
-3. from within that folder, run the command:
-    ```
-    docker compose up
-    ```
-
-    or if the yaml is not named `docker-compose.yml` then specify the file with -f:
+4. from within that folder, run the command:
+    
     ```
     docker compose -f docker-compose_t1ceandt2orflair.yml up
     ```
 
-It takes about an hour to fully process a single subject's data (depending on your machine specs). Model predictions will be stored in an `output/` folder with files named `[subID]_pred_brainTumorSeg[/WholeTumorSeg].nii.gz`, OR for T1CE and T2/FLAIR model `[subID]_pred_enhancingTumorSeg.nii.gz` (enhancing region only).
+It takes about an hour to fully process a single subject's data (depending on your machine specs). Model predictions will be stored in an `output/` folder with files named `[subID]_pred_brainTumorSeg.nii.gz` for multi-parametric model, `[subID]_pred_wholeTumorSeg.nii.gz` for T2/FLAIR model, OR for T1CE and T2/FLAIR model `[subID]_pred_enhancingTumorSeg.nii.gz` (enhancing region only).
 
 
 ## Usage & Citations
