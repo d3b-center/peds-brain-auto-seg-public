@@ -73,6 +73,14 @@ input/
 
 It takes about an hour to fully process a single subject's data (depending on your machine specs). Model predictions will be stored in an `output/` folder with files named `[subID]_pred_brainTumorSeg.nii.gz` for multi-parametric model, `[subID]_pred_wholeTumorSeg.nii.gz` for T2/FLAIR model, OR for T1CE and T2/FLAIR model `[subID]_pred_enhancingTumorSeg.nii.gz` (enhancing region only).
 
+The segmentation labels for the multi-parametric model are described below:
+1. Enhancing tumor (ET; label 1): Areas with enhancement (brightness) on contrast-enhanced T1 sequences (T1C) as compared to pre-contrast T1 (T1N) sequences. In case of mild enhancement, checking the signal intensity of normal brain structure can be helpful.
+
+2. Nonenhancing tumor (NET; label 2): Any other abnormal signal intensity within the tumorous region that cannot be defined as enhancing or cystic. For example, the abnormal signal intensity on T1N, T2F, and T2W sequences that is not enhancing on T1C sequences should be considered as nonenhancing portion.
+
+3. Cystic component (CC; label 3): Typically appearing with hyperintense signal (very bright) on T2W sequences and hypointense signal (dark) on T1C sequences. The cystic portion should be within the tumor, either centrally or peripherally (as compared to ED which is peritumoral). The brightness of CC is here defined as comparable or close to cerebrospinal fluid (CSF).
+
+4. Peritumoral edema (ED; label 4): Abnormal hyperintense signal (very bright) on T2F sequences. ED is finger-like spreading that preserves underlying brain structure and surrounds the tumor.
 
 ## Usage & Citations
 Note: Use of this software is available to academic and non-profit institutions for research purposes only subject to the terms of the 2-Clause BSD License (see License). For use or transfers of the software to commercial entities, please inquire with Dr. Anahita Fathi Kazerooni - fathikazea@chop.edu. 
