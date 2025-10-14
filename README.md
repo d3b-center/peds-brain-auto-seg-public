@@ -82,6 +82,18 @@ The segmentation labels for the multi-parametric model are described below:
 
 4. Peritumoral edema (ED; label 4): Abnormal hyperintense signal (very bright) on T2F sequences. ED is finger-like spreading that preserves underlying brain structure and surrounds the tumor.
 
+## Results: 
+1. Multi-parametric model 
+Tumor sub-regions	DIPG/DMG (Dice)	HGG (Dice)	LGG (Dice)	Medulloblastoma (Dice)	Others (Dice)
+WT	0.92 ± 0.15 (0.98)	0.88 ± 0.10 (0.90)	0.86 ± 0.15 (0.91)	0.89 ± 0.05 (0.91)	0.55 ± 0.38 (0.65)
+ET	0.62 ± 0.39 (0.81)	0.53 ± 0.40 (0.67)	0.74 ± 0.28 (0.87)	0.81 ± 0.12 (0.80)	0.38 ± 0.44 (0.34)
+NET	0.9 ± 0.16 (0.96)	0.76 ± 0.18 (0.82)	0.51 ± 0.33 (0.61)	0.54 ± 0.30 (0.57)	0.33 ± 0.42 (0.22)
+CC	0.57 ± 0.47 (0.86)	0.61 ± 0.40 (0.72)	0.59 ± 0.43 (0.80)	0.51 ± 0.25 (0.50)	1.00 ± 0.00 (1.00)
+ED	0.88 ± 0.31 (1)	0.67 ± 0.44 (1.00)	0.52 ± 0.45 (0.55)	0.52 ± 0.42 (0.67)	1.00 ± 0.00 (1.00)
+NET+CC+ED	0.91 ± 0.16 (0.97)	0.84 ± 0.09 (0.86)	0.72 ± 0.26 (0.80)	0.76 ± 0.11 (0.76)	0.33 ± 0.42 (0.22)
+TC	0.92 ± 0.15 (0.98)	0.85 ± 0.12 (0.87)	0.83 ± 0.19 (0.89)	0.88 ± 0.06 (0.89)	0.55 ± 0.38 (0.65)
+
+
 ## Usage & Citations
 Note: Use of this software is available to academic and non-profit institutions for research purposes only subject to the terms of the 2-Clause BSD License (see License). For use or transfers of the software to commercial entities, please inquire with Dr. Anahita Fathi Kazerooni - fathikazea@chop.edu. 
 
