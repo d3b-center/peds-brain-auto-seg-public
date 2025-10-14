@@ -82,7 +82,7 @@ The segmentation labels for the multi-parametric model are described below:
 
 4. Peritumoral edema (ED; label 4): Abnormal hyperintense signal (very bright) on T2F sequences. ED is finger-like spreading that preserves underlying brain structure and surrounds the tumor.
 
-## Results
+## Results - Model performance on different pediatric brain tumor histologies
 1. Multi-parametric model:
    
 | Tumor sub-regions | DIPG/DMG (Dice)       | HGG (Dice)           | LGG (Dice)           | Medulloblastoma (Dice) | Others (Dice)        |
