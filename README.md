@@ -95,6 +95,14 @@ The segmentation labels for the multi-parametric model are described below:
 | NET+CC+ED         | 0.91 ± 0.16 (0.97)    | 0.84 ± 0.09 (0.86)   | 0.72 ± 0.26 (0.80)   | 0.76 ± 0.11 (0.76)     | 0.33 ± 0.42 (0.22)   |
 | TC                | 0.92 ± 0.15 (0.98)    | 0.85 ± 0.12 (0.87)   | 0.83 ± 0.19 (0.89)   | 0.88 ± 0.06 (0.89)     | 0.55 ± 0.38 (0.65)   |
 
+2. Whole tumor segmentation using T2w or T2w-FLAIR inputs:
+
+| Tumor Histologies | WT Dice score (input: T2w) | WT Dice score (input: T2w-FLAIR) |
+|-------------------|---------------------------|-------------------------------|
+| DIPG              | 0.80 ± 0.23 (0.88)        | 0.83 ± 0.21 (0.90)            |
+| Medullo           | 0.88 ± 0.07 (0.90)        | 0.84 ± 0.14 (0.88)            |
+| LGG               | 0.87 ± 0.14 (0.91)        | 0.88 ± 0.09 (0.91)            |
+| Others            | 0.82 ± 0.24 (0.92)        | 0.84 ± 0.22 (0.91)            |
 
 ## Usage & Citations
 Note: Use of this software is available to academic and non-profit institutions for research purposes only subject to the terms of the 2-Clause BSD License (see License). For use or transfers of the software to commercial entities, please inquire with Dr. Anahita Fathi Kazerooni - fathikazea@chop.edu. 
