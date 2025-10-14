@@ -84,6 +84,7 @@ The segmentation labels for the multi-parametric model are described below:
 
 ## Results
 1. Multi-parametric model:
+   
 | Tumor sub-regions | DIPG/DMG (Dice)       | HGG (Dice)           | LGG (Dice)           | Medulloblastoma (Dice) | Others (Dice)        |
 |-------------------|-----------------------|----------------------|----------------------|------------------------|----------------------|
 | WT                | 0.92 ± 0.15 (0.98)    | 0.88 ± 0.10 (0.90)   | 0.86 ± 0.15 (0.91)   | 0.89 ± 0.05 (0.91)     | 0.55 ± 0.38 (0.65)   |
