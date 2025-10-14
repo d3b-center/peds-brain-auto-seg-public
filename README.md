@@ -104,6 +104,16 @@ The segmentation labels for the multi-parametric model are described below:
 | LGG               | 0.87 ± 0.14 (0.91)        | 0.88 ± 0.09 (0.91)            |
 | Others            | 0.82 ± 0.24 (0.92)        | 0.84 ± 0.22 (0.91)            |
 
+3. Enhancing tumor segmentations using T1CE + T2w or T1CE + T2w-FLAIR inputs:
+
+| Tumor histologies | ET Dice score (inputs: T1CE + T2w) | ET Dice score (inputs: T1CE + T2w-FLAIR) |
+|--------------------------|------------------------------------|------------------------------------------|
+| DIPG                     | 0.54 ± 0.41 (0.72)                 | 0.55 ± 0.40 (0.74)                       |
+| Medullo                  | 0.74 ± 0.25 (0.82)                 | 0.74 ± 0.25 (0.81)                       |
+| LGG                      | 0.76 ± 0.28 (0.88)                 | 0.74 ± 0.29 (0.87)                       |
+| Others                   | 0.49 ± 0.39 (0.67)                 | 0.55 ± 0.39 (0.73)                       |
+
+
 ## Usage & Citations
 Note: Use of this software is available to academic and non-profit institutions for research purposes only subject to the terms of the 2-Clause BSD License (see License). For use or transfers of the software to commercial entities, please inquire with Dr. Anahita Fathi Kazerooni - fathikazea@chop.edu. 
 
