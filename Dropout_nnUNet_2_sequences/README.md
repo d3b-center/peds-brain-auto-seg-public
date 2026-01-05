@@ -49,6 +49,4 @@ Note: Use of this software is available to academic and non-profit institutions 
 
 If you use the model in your research study, please cite the following paper:
 
-AI-Powered Segmentation and Prognosis with Missing MRI in Pediatric Brain Tumors
-Dimosthenis Chrysochoou, Deep B. Gandhi, Sahand Adib, Ariana M. Familiar, Neda Khalili, Nastaran Khalili, Jeffrey B. Ware, Wenxin Tu, Paarth Jain, Hannah Anderson, Shuvanjan Haldar, Phillip B. Storm, Andrea Franson, Michael Prados, Cassie Kline, Sabine Mueller, Adam Resnick, Arastoo Vossough, Christos Davatzikos, Ali Nabavizadeh, Anahita Fathi Kazerooni
-medRxiv 2025.07.14.25331187; doi: https://doi.org/10.1101/2025.07.14.25331187
+1. Dimosthenis Chrysochoou, Deep B. Gandhi, Sahand Adib, Ariana M. Familiar, Neda Khalili, Nastaran Khalili, Jeffrey B. Ware, Wenxin Tu, Paarth Jain, Hannah Anderson, Shuvanjan Haldar, Phillip B. Storm, Andrea Franson, Michael Prados, Cassie Kline, Sabine Mueller, Adam Resnick, Arastoo Vossough, Christos Davatzikos, Ali Nabavizadeh, Anahita Fathi Kazerooni, "AI-Powered Segmentation and Prognosis with Missing MRI in Pediatric Brain Tumors" medRxiv 2025.07.14.25331187; doi: https://doi.org/10.1101/2025.07.14.25331187
