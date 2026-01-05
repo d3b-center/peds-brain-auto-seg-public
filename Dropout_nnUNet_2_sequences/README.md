@@ -1,6 +1,6 @@
-## About This Repository
+About This Repository
 
-**AI-Powered Segmentation and Prognosis with Missing MRI in Pediatric Brain Tumors**
+## AI-Powered Segmentation and Prognosis with Missing MRI in Pediatric Brain Tumors**
 
 This repository contains a modified version of `nnUNetv2` with support for robust segmentation under missing T1w-pre and/or FLAIR.
 **UPDATE 10/10/25**: Currently testing models for robustness to all 4 sequences. 
@@ -42,9 +42,13 @@ To train additional models, prepare the dataset following the nnUNet convention.
 ## UPDATE 10/10: Train new models for handling all 4 sequences
 To train additional models, prepare the dataset following the nnUNet convention. Then run the plan_and_preprocess_nnUNet.sh script. To train a model with the desired level of Dropout, run train_nnUNet_dropout_full_pX.sh X={0,10,20,...,100}. Ensure the directories (raw, preprocessed, results) are as intended. You can start multiple jobs on the cluster so they can run at the same time. It takes ~12h per dropout value, so I would recommend submitting as many jobs as possible. Note: we are only training a single fold (-f0) with a 3d full_res configuration. Once optimal p is found on -f0 models perhaps could train subsequent folds for the optimal p.  
 
-Developer: Dimosthenis Chrysochoou
+## Developer: Dimosthenis Chrysochoou
 
-Cite: 
+## Usage & Citations
+Note: Use of this software is available to academic and non-profit institutions for research purposes only subject to the terms of the 2-Clause BSD License (see License). For use or transfers of the software to commercial entities, please inquire with Dr. Anahita Fathi Kazerooni - fathikazea@chop.edu. 
+
+If you use the model in your research study, please cite the following paper:
+
 AI-Powered Segmentation and Prognosis with Missing MRI in Pediatric Brain Tumors
 Dimosthenis Chrysochoou, Deep B. Gandhi, Sahand Adib, Ariana M. Familiar, Neda Khalili, Nastaran Khalili, Jeffrey B. Ware, Wenxin Tu, Paarth Jain, Hannah Anderson, Shuvanjan Haldar, Phillip B. Storm, Andrea Franson, Michael Prados, Cassie Kline, Sabine Mueller, Adam Resnick, Arastoo Vossough, Christos Davatzikos, Ali Nabavizadeh, Anahita Fathi Kazerooni
 medRxiv 2025.07.14.25331187; doi: https://doi.org/10.1101/2025.07.14.25331187
