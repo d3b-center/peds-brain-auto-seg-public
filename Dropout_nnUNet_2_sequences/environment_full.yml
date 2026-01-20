@@ -87,5 +87,5 @@ dependencies:
       - yacs==0.1.8
       - zipp==3.21.0
 
-prefix: /home/gandhid1/miniconda3/envs/drp_nnUNet_v3
+prefix: /path/to/your/virtual/environment/drp_nnUNet_v3
 
