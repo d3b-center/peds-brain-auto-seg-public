@@ -2,8 +2,9 @@ About This Repository
 
 ## AI-Powered Segmentation and Prognosis with Missing MRI in Pediatric Brain Tumors**
 
+**The full code will be released in the next few days**
+
 This repository contains a modified version of `nnUNetv2` with support for robust segmentation under missing T1w-pre and/or FLAIR.
-**UPDATE 10/10/25**: Currently testing models for robustness to all 4 sequences. 
 
 - The core modifications are implemented in  
   `nnUNet/nnunetv2/training/nnUNetTrainer/`,  
@@ -11,7 +12,6 @@ This repository contains a modified version of `nnUNetv2` with support for robus
 
 - Custom transforms to support dropout are defined in  
   `batchgeneratorsv2/batchgeneratorsv2/transforms/custom/`.
-  **UPDATE 10/10/25**: `batchgeneratorsv2/batchgeneratorsv2/transforms/custom/missing_modality_transform_per_image_full.py`.
 
 To use the modified utilities, simply clone this repository:
 ```bash
@@ -38,9 +38,7 @@ trained models `export nnUNet_results="/home/chrysochod/dropout_nnUNet_data/resu
 
 ## Train new models for missing FLAIR and T1w-pre
 To train additional models, prepare the dataset following the nnUNet convention. Then run the plan_and_preprocess_mmUNet.sh script. To train a model with the desired level of Dropout, run train_nnUNet_dropout_pX.sh X={0,10,20,...,100}. You can start multiple jobs on the cluster so they can run at the same time. It takes ~12h per dropout value, so I would recommend submitting as many jobs as possible. Note: we are only training a single fold (-f0) with a 3d full_res configuration. 
-
-## UPDATE 10/10: Train new models for handling all 4 sequences
-To train additional models, prepare the dataset following the nnUNet convention. Then run the plan_and_preprocess_nnUNet.sh script. To train a model with the desired level of Dropout, run train_nnUNet_dropout_full_pX.sh X={0,10,20,...,100}. Ensure the directories (raw, preprocessed, results) are as intended. You can start multiple jobs on the cluster so they can run at the same time. It takes ~12h per dropout value, so I would recommend submitting as many jobs as possible. Note: we are only training a single fold (-f0) with a 3d full_res configuration. Once optimal p is found on -f0 models perhaps could train subsequent folds for the optimal p.  
+  
 
 ## Developer: Dimosthenis Chrysochoou
 
@@ -49,4 +47,4 @@ Note: Use of this software is available to academic and non-profit institutions 
 
 If you use the model in your research study, please cite the following paper:
 
-1. Dimosthenis Chrysochoou, Deep B. Gandhi, Sahand Adib, Ariana M. Familiar, Neda Khalili, Nastaran Khalili, Jeffrey B. Ware, Wenxin Tu, Paarth Jain, Hannah Anderson, Shuvanjan Haldar, Phillip B. Storm, Andrea Franson, Michael Prados, Cassie Kline, Sabine Mueller, Adam Resnick, Arastoo Vossough, Christos Davatzikos, Ali Nabavizadeh, Anahita Fathi Kazerooni, "AI-Powered Segmentation and Prognosis with Missing MRI in Pediatric Brain Tumors" medRxiv 2025.07.14.25331187; doi: https://doi.org/10.1101/2025.07.14.25331187
+1. Chrysochoou, D., Gandhi, D.B., Adib, S. et al. AI-powered segmentation and prognosis with missing MRI in pediatric brain tumors. npj Precis. Onc. (2026). https://doi.org/10.1038/s41698-025-01269-x
