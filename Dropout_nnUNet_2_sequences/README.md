@@ -6,7 +6,7 @@ Link to the paper: https://doi.org/10.1038/s41698-025-01269-x
 To clone the code and install all dependencies, run the block below, ensuring you have adjusted the prefix path in the requirements.yml
 
 ```
-git clone https://github.com/dchry/dropout-nnunet-flair-t1.git
+git clone https://github.com/d3b-center/peds-brain-auto-seg-public.git
 cd dropout-nnunet-flair-t1
 conda env create -f requirements.yml
 conda activate drp_nnUNet
