@@ -1,0 +1,17 @@
+{ 
+ "channel_names": {
+        "0": "Flair",
+        "1": "T1",
+        "2": "T1CE",
+        "3": "T2"
+ }, 
+ "labels": {
+        "background": "0",
+        "enhancing core": "1",
+        "non-enhancing core": "2",
+        "cyst": "3",
+        "edema": "4"
+ }, 
+ "numTraining": 425, 
+ "file_ending": ".nii.gz"
+ }
