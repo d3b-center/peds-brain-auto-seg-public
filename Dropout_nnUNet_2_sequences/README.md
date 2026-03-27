@@ -1,44 +1,96 @@
-About This Repository
+# AI-powered segmentation and prognosis with missing MRI in pediatric brain tumors
+Link to the paper: https://doi.org/10.1038/s41698-025-01269-x
 
-## AI-Powered Segmentation and Prognosis with Missing MRI in Pediatric Brain Tumors**
+**Installation**
 
-**The full code will be released in the next few days**
+To clone the code and install all dependencies, run the block below, ensuring you have adjusted the prefix path in the requirements.yml
 
-This repository contains a modified version of `nnUNetv2` with support for robust segmentation under missing T1w-pre and/or FLAIR.
-
-- The core modifications are implemented in  
-  `nnUNet/nnunetv2/training/nnUNetTrainer/`,  
-  where several `nnUNetTrainerDropout_pX` variants (e.g., `p0`, `p40`,..., `p100`) have been added. UPDATE (10/10): new variants `nnUNetTrainerDropout_full_pX` have been added for handling all 4 sequences. 
-
-- Custom transforms to support dropout are defined in  
-  `batchgeneratorsv2/batchgeneratorsv2/transforms/custom/`.
-
-To use the modified utilities, simply clone this repository:
-```bash
+```
 git clone https://github.com/d3b-center/peds-brain-auto-seg-public.git
-cd dropout-nnunet-v2
-conda env create -f environment_full.yml
-cd peds-brain-auto-seg-public/Dropout_nnUNet_2_sequences/nnUNet-master
+cd peds-brain-auto-seg-public/Dropout_nnUNet_2_sequences
+conda env create -f requirements.yml
+conda activate drp_nnUNet
+cd nnUNet
 pip install -e .
 cd ../batchgeneratorsv2
 pip install -e .
+
 ```
 
-The p40 model was termed optimal based on the 85-patient CBTN validation set. p40 should be used for any future inference. All models were trained for a single fold (fold0).
+**Data formatting**
 
-## Prepare dataset for inference
-In the `create_dataset` folder, exist scripts to prepare the dataset for inference under missing FLAIR and/or missing T1w-pre. It just takes a list of subjects (in this example case from a .json file) and renames them according to the nnUNet channel convention. The missing scans are simply created as zero tensors of appropriate dimensions and are stored in channels 0002 and/or 0003.  
+This repository is based on the nnUNet v2 model (https://github.com/MIC-DKFZ/nnUNet), so we follow their data convention for model training. The training and test data should be organized as shown below. We are using the following convention: FLAIR=0000, T1w-pre=0001, T1w-post=0002, T2w=0003. A sample dataset.json is included in our repo.
 
-## Segment based on pre-trained models
+```
+data/
+├── raw/
+│   └── Dataset001_BrainTumor/
+│       ├── dataset.json
+│       ├── imagesTr/
+│       │   ├── Case001_0000.nii.gz
+│       │   ├── Case001_0001.nii.gz
+│       │   ├── Case001_0002.nii.gz
+│       │   ├── Case001_0003.nii.gz
+│       │   └── ...
+│       ├── labelsTr/
+│       │   ├── Case001.nii.gz
+│       │   └── ...
+│       ├── imagesTs/
+│       │   ├── Case101_0000.nii.gz
+│       │   ├── Case101_0001.nii.gz
+│       │   ├── Case101_0002.nii.gz
+│       │   ├── Case101_0003.nii.gz
+│       │   └── ...
+│       └── labelsTs/
+│           ├── Case101.nii.gz
+│           └── ...
+│
+├── preprocessed/
+│   └── Dataset001_BrainTumor/
+│       └── ...
+│
+└── results/
+    └── Dataset001_BrainTumor/
+        └── ...
 
-The script `infer_nnUNet_dropout_p40.sh` contains the code for segmentation with the p40 model. You just need to specify the input (-i) directory with cases to be segmented
-and the output (-o) folder for the predicted masks. In this case, the example is set up for various missing and complete MRI scenarios. 
-Note the model `-tr nnUNetTrainerDropout_p40` remains fixed as it can handle missing FLAIR and/or T1w-pre. `-f0` uses the only trained fold0. Also, the model needs access to the
-trained models `export nnUNet_results="/home/chrysochod/dropout_nnUNet_data/results"` and the requirements in the `drp_nnUNet_v3` (in environment_full.yml) and `pip install blosc2` 
+```
 
-## Train new models for missing FLAIR and T1w-pre
-To train additional models, prepare the dataset following the nnUNet convention. Then run the plan_and_preprocess_mmUNet.sh script. To train a model with the desired level of Dropout, run train_nnUNet_dropout_pX.sh X={0,10,20,...,100}. You can start multiple jobs on the cluster so they can run at the same time. It takes ~12h per dropout value, so I would recommend submitting as many jobs as possible. Note: we are only training a single fold (-f0) with a 3d full_res configuration. 
-  
+**Model Training**
+
+First, we run the plan and preprocess command. You can use the following script, ensuring you have adjusted the required paths. The script will populate the data/preprocessed directory with preprocessed data.
+
+```
+train_scripts/plan_and_preprocess.sh
+```
+Then, we train 3d_fullres configuration nnUNet models with different levels of dropout applied independently to channels 0 (FLAIR) and 1 (T1w-pre). For example, to train a model with modality dropout of p=0.4 (optimal level of dropout based on the 85 validation CBTN patients), you can use the script below. Trained models are stored under data/results.
+```
+train_scripts/train_nnUNet_dropout_p40.sh
+```
+For more clarity on the **dropout functionality**, you can inspect the scripts under 
+
+```
+nnUNet/nnunetv2/training/nnUNetTrainer/nnUNetTrainerDropout_pX.py, X={0,10,...,100}
+batchgeneratorsv2/batchgeneratorsv2/transforms/custom/missing_modality_transform_per_image.py
+```
+**Inference**
+
+During inference, the model expects 4 nifti scans with the nnUNet v2 model naming convention. We set missing FLAIR and/or T1 to zeroed images and copy available modalities using the script below
+```
+inference_scripts/copy_zFL_zT1.py
+```
+
+We can then use the models trained at different dropout levels with the corresponding scripts under /inference_scripts. For example, for the model trained with p=0.4, you can use the following script, adjusting the associated paths. 
+```
+inference_scripts/infer_nnUNet_dropout_p40.sh
+```
+
+**Evaluation**
+
+To calculate Dice scores for the predicted segmentation masks per subregion, you can adapt the following script to your evaluation pipeline
+
+```
+inference_scripts/dice.py
+```
 
 ## Developer: Dimosthenis Chrysochoou
 
@@ -48,3 +100,4 @@ Note: Use of this software is available to academic and non-profit institutions 
 If you use the model in your research study, please cite the following paper:
 
 1. Chrysochoou, D., Gandhi, D.B., Adib, S. et al. AI-powered segmentation and prognosis with missing MRI in pediatric brain tumors. npj Precis. Onc. (2026). https://doi.org/10.1038/s41698-025-01269-x
+
