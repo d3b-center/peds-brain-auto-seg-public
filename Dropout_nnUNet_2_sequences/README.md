@@ -83,6 +83,10 @@ We can then use the models trained at different dropout levels with the correspo
 ```
 inference_scripts/infer_nnUNet_dropout_p40.sh
 ```
+**Inference with trained model**
+To support reproducibility and facilitate use in downstream tasks, we provide the trained nnU-Net segmentation model (trained with p = 0.4). The link below contains the full results directory generated during training, including the model weights and configuration details required for inference.
+
+[Download Trained Model](https://drive.google.com/drive/folders/1Db1gEEH24Z9p-pZR4cFL7hnFK_RXfmPo?usp=drive_link)
 
 **Evaluation**
 
