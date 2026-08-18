@@ -99,6 +99,7 @@ inference_scripts/dice.py
 ```
 
 **4 Sequence Modality Dropout** 
+
 In our paper, modality dropout was applied during training to FLAIR and T1w-pre sequences, demonstrating robust segmentation and survival analysis when FLAIR and/or T1w-pre sequences were unavailable. Here, we additionally provide the training logic and model weights for a model trained with modality dropout applied to all four MRI sequences. This model can be used for segmentation inference with any combination of available MRI sequences.
 
 The custom transform and trainer used to apply modality dropout across all four MRI sequences during training are implemented in the following scripts:
