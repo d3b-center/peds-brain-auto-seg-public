@@ -72,6 +72,7 @@ For more clarity on the **dropout functionality**, you can inspect the scripts u
 nnUNet/nnunetv2/training/nnUNetTrainer/nnUNetTrainerDropout_pX.py, X={0,10,...,100}
 batchgeneratorsv2/batchgeneratorsv2/transforms/custom/missing_modality_transform_per_image.py
 ```
+
 **Inference**
 
 During inference, the model expects 4 nifti scans with the nnUNet v2 model naming convention. We set missing FLAIR and/or T1 to zeroed images and copy available modalities using the script below
@@ -83,8 +84,9 @@ We can then use the models trained at different dropout levels with the correspo
 ```
 inference_scripts/infer_nnUNet_dropout_p40.sh
 ```
+
 **Inference with trained model**
-To support reproducibility and facilitate use in downstream tasks, we provide the trained nnU-Net segmentation model (trained with p = 0.4). The link below contains the full results directory generated during training, including the model weights and configuration details required for inference.
+To support reproducibility and facilitate use in downstream tasks, we provide the trained nnU-Net segmentation model (trained with p = 0.4). The link below contains the full results directory generated during training, including the model weights and configuration details required for inference for the model trained with dropout applied to FLAIR and T1w-pre (Dataset001_BrainTumor).
 
 [Download Trained Model](https://drive.google.com/drive/folders/1Db1gEEH24Z9p-pZR4cFL7hnFK_RXfmPo?usp=drive_link)
 
@@ -96,12 +98,31 @@ To calculate Dice scores for the predicted segmentation masks per subregion, you
 inference_scripts/dice.py
 ```
 
+**4 Sequence Modality Dropout** 
+In our paper, modality dropout was applied during training to FLAIR and T1w-pre sequences, demonstrating robust segmentation and survival analysis when FLAIR and/or T1w-pre sequences were unavailable. Here, we additionally provide the training logic and model weights for a model trained with modality dropout applied to all four MRI sequences. This model can be used for segmentation inference with any combination of available MRI sequences.
+
+The custom transform and trainer used to apply modality dropout across all four MRI sequences during training are implemented in the following scripts:
+
+```
+nnUNet/nnunetv2/training/nnUNetTrainer/nnUNetTrainerDropout_full_p40.py
+batchgeneratorsv2/batchgeneratorsv2/transforms/custom/missing_modality_transform_per_image_full.py
+```
+Segmentation masks can then be generated using any combination of available MRI sequences (setting missing sequences to zero) with the following inference script: 
+
+```
+inference_scripts/infer_nnUNet_dropout_full_p40.sh
+```
+
+The link below contains the complete results directory generated during training for the model trained with dropout applied to all four MRI sequences (Dataset508_V12-dropout). The directory includes the trained model weights and configuration files required for inference.
+
+[Download Trained Model](https://drive.google.com/drive/folders/1Db1gEEH24Z9p-pZR4cFL7hnFK_RXfmPo?usp=drive_link)
+
 ## Developer: Dimosthenis Chrysochoou
 
 ## Usage & Citations
 Note: Use of this software is available to academic and non-profit institutions for research purposes only subject to the terms of the 2-Clause BSD License (see License). For use or transfers of the software to commercial entities, please inquire with Dr. Anahita Fathi Kazerooni - fathikazea@chop.edu. 
 
-If you use the model in your research study, please cite the following paper:
+If you use any of the models of this repository in your research study, please cite the following paper:
 
 1. Chrysochoou, D., Gandhi, D.B., Adib, S. et al. AI-powered segmentation and prognosis with missing MRI in pediatric brain tumors. npj Precis. Onc. (2026). https://doi.org/10.1038/s41698-025-01269-x
 
